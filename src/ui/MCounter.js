@@ -3,17 +3,37 @@ import {
   Text,
   TextInput,
   Image,
+  Button,
   StyleSheet,
   TouchableOpacity,
   NativeModules
 } from "react-native";
 import React from "react";
-import { decreaseAction, increaseAction } from "../redux/action/CAction";
+import {
+  change_name,
+  change_pass,
+  decreaseAction,
+  increaseAction,
+  updates_list
+} from "../redux/action/CAction";
 import { connect } from "react-redux";
 import MColors from "../source/colors/Colors";
+
 class MCounter extends React.Component {
+  _mSaga() {}
+  _login() {}
   render() {
-    const { value, onIncreaseClick, onDecreaseClick } = this.props;
+    const {
+      value,
+      onIncreaseClick,
+      onDecreaseClick,
+      changeUsername,
+      changePassword,
+      password,
+      username,
+      activityList,
+      info
+    } = this.props;
     return (
       <View>
         <Text style={styles.title}>这是React-Redux</Text>
@@ -26,6 +46,20 @@ class MCounter extends React.Component {
             <Text style={styles.reduce}>减少</Text>
           </TouchableOpacity>
         </View>
+        <Button onPress={() => this._mSaga()} title="saga" />
+        <TextInput
+          placeholder="username"
+          value={username}
+          onChangeText={text => changeUsername(text)}
+        />
+        <TextInput
+          placeholder="password"
+          value={password}
+          onChangeText={text => changePassword(text)}
+        />
+        <Text>{password}</Text>
+        <Text>{info}</Text>
+        <Button title="Login" onPress={activityList} />
       </View>
     );
   }
@@ -50,13 +84,31 @@ const styles = StyleSheet.create({
     marginLeft: 10
   }
 });
-const mapStateToProps = state => ({
-  value: state.count
-});
+
+const mapStateToProps = state => {
+  //alert(JSON.stringify(state));
+  return {
+    value: state.setCounter.count,
+    username: state.setCounter.username,
+    password: state.setCounter.password,
+    info: state.setCounter.activityList
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
-  onIncreaseClick: () => dispatch(increaseAction),
-  onDecreaseClick: () => dispatch(decreaseAction)
+  onIncreaseClick: () => {
+    dispatch(increaseAction);
+  },
+  onDecreaseClick: () => dispatch(decreaseAction),
+  changeUsername: text => {
+    dispatch(change_name(text));
+  },
+  changePassword: text => {
+    dispatch(change_pass(text));
+  },
+  activityList: () => {
+    dispatch(updates_list);
+  }
 });
 
 module.exports = connect(

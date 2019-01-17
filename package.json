@@ -7,14 +7,15 @@
     "test": "jest"
   },
   "dependencies": {
-    "react": "16.6.3",
-    "react-native": "0.57.8",
     "babel-preset-react-native": "2.1.0",
     "immutable": "^4.0.0-rc.12",
     "lodash": "latest",
+    "mockjs": "latest",
     "prop-types": "latest",
     "query-string": "latest",
+    "react": "16.6.3",
     "react-dom": "^16.7.0",
+    "react-native": "0.57.8",
     "react-native-easy-toast": "^1.1.0",
     "react-native-gesture-handler": "^1.0.12",
     "react-native-mint-components": "^0.1.2",
@@ -25,13 +26,15 @@
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
     "redux-persist": "^5.10.0",
-    "redux-persist-immutable": "^4.3.1"
+    "redux-persist-immutable": "^4.3.1",
+    "redux-saga": "^0.16.2"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",
     "jest": "23.6.0",
     "metro-react-native-babel-preset": "0.51.1",
-    "react-test-renderer": "16.6.3"
+    "react-test-renderer": "16.6.3",
+    "redux-logger": "^3.0.6"
   },
   "jest": {
     "preset": "react-native"
